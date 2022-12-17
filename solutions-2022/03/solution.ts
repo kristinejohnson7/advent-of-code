@@ -14,6 +14,30 @@ const testData = [
 
 export const rucksackReorganization = () => {
   const data = readFileSync(`${__dirname}/data.txt`, 'utf8').split('\n')
-  console.log(testData)
-  return 0
+  const alpha = '_abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'.split(
+    '',
+  )
+
+  let shared = []
+  let sum = 0
+
+  for (const item of data) {
+    const one = item.slice(0, item.length / 2).split('')
+    const two = item.slice(item.length / 2).split('')
+
+    for (let i = 0; i < one.length; i++) {
+      if (two.includes(one[i])) {
+        shared.push(one[i])
+        break
+      }
+    }
+  }
+  console.log(shared)
+
+  for (const letter of shared) {
+    const number = alpha.indexOf(letter)
+    sum += number
+  }
+
+  console.log(sum)
 }
