@@ -14,6 +14,24 @@ const testData = [
 
 export const campCleanup = () => {
   const data = readFileSync(`${__dirname}/data.txt`, 'utf8').split('\n')
-  console.log(testData)
-  return 0
+  const items = data.map(item => item.split(','))
+  let sum = 0
+
+  for (let i = 0; i < items.length; i++) {
+    const itemOne = items[i][0].split('-')
+    const itemTwo = items[i][1].split('-')
+
+    const startOne = parseInt(itemOne[0])
+    const endOne = parseInt(itemOne[1])
+    const startTwo = parseInt(itemTwo[0])
+    const endTwo = parseInt(itemTwo[1])
+
+    if (
+      (startOne <= startTwo && endOne >= endTwo) ||
+      (startOne >= startTwo && endOne <= endTwo)
+    ) {
+      sum += 1
+    }
+  }
+  console.log(sum)
 }
