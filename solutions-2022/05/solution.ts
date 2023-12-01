@@ -17,6 +17,7 @@ const testData = [
 
 export const supplyStacks = () => {
   const data = readFileSync(`${__dirname}/data.txt`, 'utf8').split('\n')
+
   console.log(testData)
   return 0
 }
